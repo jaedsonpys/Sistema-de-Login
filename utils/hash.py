@@ -3,7 +3,7 @@ import os
 
 class Hash:
     def __init__(self):
-        self.key = os.environ.get('BCRYPT_KEY')
+        pass
 
     def check_hash(self, password_attempted, original_password):
         '''

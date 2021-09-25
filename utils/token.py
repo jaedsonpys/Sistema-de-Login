@@ -2,6 +2,8 @@ import jwt
 import os
 from datetime import datetime, timedelta
 
+os.environ.setdefault('JWT_KEY', '5rD0GXWNyhoWm1x64ihQ4CldETS6PVa@^zLKiW824rhX*EvQ@')
+
 class Token:
     def __init__(self, token=None):
         self.key = os.environ.get('JWT_KEY')

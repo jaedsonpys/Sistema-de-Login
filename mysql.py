@@ -3,9 +3,12 @@ import os
 from utils.hash import Hash
 from datetime import datetime
 
+os.environ.setdefault('DATABASE_USER', 'root')
+os.environ.setdefault('DATABASE_PASSWORD', 'Firlastdatabase@2021')
+
 connect_mysql = pymysql.connect(
     user=os.environ.get('DATABASE_USER'),
-    password=os.os.environ.get('DATABASE_PASSWORD'),
+    password=os.environ.get('DATABASE_PASSWORD'),
     autocommit=True,
     charset='utf8',
 )
@@ -21,7 +24,7 @@ sql.execute(f'create table if not exists usuarios({table_config})')
 
 class MySQL:
     def __init__(self):
-        sql.ping()
+        connect_mysql.ping()
 
     def insert_user(self, name, email, password):
         user_exists = self.user_exists(email)
@@ -37,7 +40,7 @@ class MySQL:
 
     def user_exists(self, email):
         query = sql.execute('select id from usuarios where email = %s', (email,))
-        data = query.fetchone()
+        data = sql.fetchone()
 
         if not data:
             return False # Não existe nenhum usuário com esse email

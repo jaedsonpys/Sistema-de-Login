@@ -1,12 +1,17 @@
 from flask import Flask, make_response, render_template, request, redirect, url_for
 
+from register import register
 from utils.token import Token
 
 app = Flask(__name__, template_folder='templates', static_folder='public')
+app.register_blueprint(register)
 
 @app.route('/')
 def home():
     user_token = request.cookies.get('auth')
+
+    if user_token is None:
+        return 'INválido'
     token_validate = Token(user_token).check_token()
 
     if not token_validate:
