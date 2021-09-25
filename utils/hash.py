@@ -13,7 +13,9 @@ class Hash:
         original_password: A senha que foi guardada no banco de dados em formato de hash.
         '''
 
-        hash_check = bcrypt.checkpw(bytes(password_attempted), bytes(original_password, 'utf8'))
+        print(password_attempted, original_password)
+
+        hash_check = bcrypt.checkpw(bytes(password_attempted, 'utf8'), bytes(original_password, 'utf8'))
         return hash_check
 
     def create_hash(self, original_password):

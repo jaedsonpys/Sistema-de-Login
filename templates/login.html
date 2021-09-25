@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazer login</title>
+</head>
+<body>
+    <main>
+        <h1>Entre em sua conta</h1>
+        <form method="POST">
+            <div>
+                <input type="email" name="email" id="email" placeholder="Email">
+            </div>
+            <div>
+                <input type="password" name="password" id="password" placeholder="Crie uma senha">
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        {% if empty %}
+        <p>Email ou senha vazios</p>
+        {%endif%}
+        {% if invalid %}
+        <p>Email ou senha incorretos</p>
+        {%endif%}
+    </main>
+</body>
+</html>

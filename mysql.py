@@ -38,6 +38,20 @@ class MySQL:
         sql.execute('insert into usuarios(name, email, password, create_at) values(%s,%s,%s,%s)', (name, email, hashed_password, create_at, ))
         return True
 
+    def login_user(self, email, password):
+        sql.execute('select name, email, password from usuarios where email = %s', (email,))
+        user_data = sql.fetchone()
+
+        if user_data is None:
+            return False
+
+        verify_hash = Hash().check_hash(password, user_data[2])
+
+        if not verify_hash:
+            return False
+
+        return {'name': user_data[0],'email': user_data[1]}
+
     def user_exists(self, email):
         query = sql.execute('select id from usuarios where email = %s', (email,))
         data = sql.fetchone()
