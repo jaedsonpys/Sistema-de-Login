@@ -56,3 +56,16 @@ def login_func():
 @auth.route('/logout')
 def logout_func():
     auth = request.cookies.get('auth')
+
+    if auth is None:
+        return make_response(redirect(url_for('auth.login_func')))
+
+    validate_token = Token(auth).check_token()
+
+    if validate_token is False:
+        return make_response(redirect(url_for('auth.login_func')))
+
+    response = make_response(redirect(url_for('auth.login_func')))
+    response.delete_cookie('auth')
+
+    return response
