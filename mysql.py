@@ -52,8 +52,12 @@ class MySQL:
 
         return {'name': user_data[0],'email': user_data[1]}
 
+    def delete_user(self, email):
+        sql.execute('delete from usuarios where email = %s', (email, ))
+        return True
+
     def user_exists(self, email):
-        query = sql.execute('select id from usuarios where email = %s', (email,))
+        sql.execute('select id from usuarios where email = %s', (email,))
         data = sql.fetchone()
 
         if not data:
