@@ -10,7 +10,11 @@
 <body>
     <main>
         <article>
-            <h1>Olá, <span id="user_name"></span><div id="bar" style="height: 30px; width: 8px; background-color: rgb(65, 3, 122);"></div></h1>
+            <div class="animation">
+                <h1 class="message">Olá, </h1>
+                <h1 id="user_name" class="username"></h1>
+                <div id="bar" style="height: 30px; width: 8px; background-color: rgb(65, 3, 122);"></div>
+            </div>
             <p>Você está logado como <a href="{{ url_for('profile.profile_func')}}">{{email}}</a>.</p>
         </article>
     </main>
@@ -19,7 +23,8 @@
         var c = 0
 
         setInterval(()=>{
-            var name = '{{name}}'
+            var name = '{{name}}'.split(' ')[0]
+            console.log(name)
 
             if(c == 2){
                 var ct = 0
@@ -33,10 +38,10 @@
             }
 
             if(c == name.length){
-                return
+                return false
             }
 
-            var name = '{{name}}'[c]
+            var name = '{{name}}'.split(' ')[0][c]
             c+=1
             console.log(name)
             document.getElementById('user_name').innerText += name

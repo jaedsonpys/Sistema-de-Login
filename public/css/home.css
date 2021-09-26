@@ -25,19 +25,26 @@ main {
     padding: 30px;
 }
 
-main article h1 {
+main article .message {
     font-size: 3rem;
     display: inline-flex;
     align-items: center;
 }
 
-main article h1 span {
+main article .animation {
+    display: flex;
+    align-items: center;
+}
+
+main article .username {
     background: linear-gradient(65deg, blueviolet, rgb(57, 1, 109));
     color: black;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-left: 15px;
+    font-size: 3rem;
+    word-spacing: 40px;
 }
 
 main article p a {
