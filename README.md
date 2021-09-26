@@ -39,3 +39,13 @@ Para rodar este projeto em sua máquina, é preciso ter instalado o Python3, já
 4. Mais uma vez, digite o comando: **python3 app.py**.
 
 5. Pronto! 🎉
+
+## **Rotas**
+
+1. Login: 0.0.0.0:3000/login
+
+2. Criar conta: 0.0.0.0:3000/register
+
+3. Página inicial (necessita estar logado): 0.0.0.0:3000/
+
+4. Perfil (necessita estar logado): 0.0.0.0:3000/profile
