@@ -20,7 +20,7 @@ def home():
     if not token_validate:
         return make_response(redirect(url_for('auth.login_func')))
 
-    return make_response(render_template('index.html', user_data=token_validate), 200)
+    return make_response(render_template('index.html', name=token_validate['name'], email=token_validate['email']), 200)
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000, host='0.0.0.0')

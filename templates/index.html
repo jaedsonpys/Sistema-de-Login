@@ -3,13 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/public/css/home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
 </head>
 <body>
     <main>
-        <h1>Olá, {{user_data['name']}}</h1>
-        <p>Você está logado como <a href="{{ url_for('profile.profile_func')}}">{{user_data['email']}}</a></p>
+        <article>
+            <h1>Olá, <span id="user_name"></span><div id="bar" style="height: 30px; width: 8px; background-color: rgb(65, 3, 122);"></div></h1>
+            <p>Você está logado como <a href="{{ url_for('profile.profile_func')}}">{{email}}</a>.</p>
+        </article>
     </main>
+    <script>
+        var i;
+        var c = 0
+
+        setInterval(()=>{
+            var name = '{{name}}'
+
+            if(c == 2){
+                var ct = 0
+                while(true){
+                    if(ct == 40000000){
+                        console.log('ok')
+                        break
+                    }
+                    ct++
+                }
+            }
+
+            if(c == name.length){
+                return
+            }
+
+            var name = '{{name}}'[c]
+            c+=1
+            console.log(name)
+            document.getElementById('user_name').innerText += name
+        },150)
+
+        setInterval(async()=>{
+            const bar = document.getElementById('bar')
+            bar.style.background = 'transparent'
+            setTimeout(async()=>{
+                const bar = document.getElementById('bar')
+                bar.style.background = 'rgb(65, 3, 122)'
+            },500)
+        },1000)
+    </script>
 </body>
 </html>
