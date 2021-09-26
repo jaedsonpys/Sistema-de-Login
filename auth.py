@@ -9,17 +9,42 @@ def register_func():
     if request.method == 'POST':
         user_data = request.form.to_dict()
 
-        if 'email' not in user_data or 'password' not in user_data or 'email' not in user_data:
-            return make_response(render_template('register.html', empty=True), 400)
+        # Validando campos do formulário
+        if 'name' in user_data and 'password' in user_data and 'email' in user_data:
+            # Se algum campo estiver vazio
+            if user_data['name'] == '' or user_data['email'] == '' or user_data['password'] == '':
+                return make_response(
+                    render_template(
+                        'register.html',
+                        empty=True,
+                        name=user_data['name'],
+                        email=user_data['email']
+                    ), 400)
+        else:
+            return make_response(
+                render_template(
+                    'register.html',
+                    empty=True,
+                    name=user_data['name'],
+                    email=user_data['email']
+                ), 400)
 
         user_register = MySQL().insert_user(user_data['name'], user_data['email'], user_data['password'])
 
         if user_register is False:
-            return make_response(render_template('register.html', emailInUse=True), 400)
+            return make_response(
+                render_template(
+                    'register.html',
+                    emailInUse=True,
+                    name=user_data['name']
+                ), 400)
+
         elif user_register:
             new_token = Token().generate_token(user_data['name'], user_data['email'])
+
             response = make_response(redirect(url_for('home')))
             response.set_cookie('auth', new_token)
+
             return response
 
     return render_template('register.html')
@@ -29,18 +54,24 @@ def login_func():
     if request.method == 'POST':
         user_data = request.form.to_dict()
 
-        if 'email' not in user_data or 'password' not in user_data:
-            return render_template('login.html', empty=True)
+        print('email' in user_data)
+
+        if 'email' in user_data and 'password' in user_data:
+            if user_data['email'] == '' or user_data['password'] == '':
+                return render_template('login.html', empty=True, email=user_data['email'])
+        else:
+            return render_template('login.html', empty=True, email=user_data['email'])
 
         login_user = MySQL().login_user(user_data['email'], user_data['password'])
         if login_user is False:
             return make_response(render_template('login.html', invalid=True), 401)
 
         new_token = Token().generate_token(login_user['name'], login_user['email'])
+
         response = make_response(redirect(url_for('home')))
         response.set_cookie('auth', new_token)
-
         return response
+
 
     user_token = request.cookies.get('auth')
 

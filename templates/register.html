@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar conta</title>
+    <link rel="stylesheet" href="/public/css/auth.css">
+    <title>Crie sua conta</title>
 </head>
 <body>
     <main>
-        <h1>Crie sua conta</h1>
         <form method="POST">
-            <div>
-                <input type="text" name="name" id="name" placeholder="Seu nome">
-            </div>
-            <div>
-                <input type="email" name="email" id="email" placeholder="Email">
-            </div>
-            <div>
-                <input type="password" name="password" id="password" placeholder="Crie uma senha">
-            </div>
+            <label for="name">Nome</label>
+            <input type="text" name="name" id="name" value="{{name}}">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="{{email}}">
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" value="{{password}}">
+            <span>Já tem uma conta? <a href="/register">Entre aqui..</a></span>
+            {% if empty == True %}
+            <p>Nome, email ou senha vazios</p>
+            {%endif%}
+            {% if emailInUse == True %}
+            <p>Email já em uso</p>
+            {%endif%}
             <button type="submit">Criar conta</button>
         </form>
     </main>

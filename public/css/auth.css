@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(228, 228, 228);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+main {
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+}
+
+main article h1 {
+    font-weight: 300;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+main article h1 span {
+    text-decoration: underline;
+    color: blueviolet;
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+}
+
+main form label {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+main form input {
+    height: 30px;
+    border: 1px solid rgb(157, 143, 170);
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+
+    outline-color: rgb(117, 98, 134);
+}
+
+main form button {
+    background-color: blueviolet;
+    height: 35px;
+    color: white;
+
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 40px;
+
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+
+    transition: 300ms;
+}
+
+main form button:hover {
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+main form span {
+    margin-top: -15px;
+    font-size: .8rem;
+    color: rgb(65, 65, 65);
+}
+
+main form span a {
+    font-size: .8rem;
+    color: blueviolet;
+    transition: 300ms;
+}
+
+main form span a:hover {
+    color: black;
+}
+
+main form p {
+    color: red;
+    margin-top: 10px;
+    font-size: .8rem;
+}
+
+@media (max-width: 450px) {
+    body {
+        display: unset;
+        background-color: unset;
+        height: auto;
+    }
+
+    html {
+        height: auto;
+    }
+
+    main {
+        width: 100%;
+        margin-top: 50px;
+        padding: 40px;
+    }
+
+    main form {
+        width: 100%;
+    }
+
+    main form button {
+        margin-top: 70px;
+    }
+
+}
